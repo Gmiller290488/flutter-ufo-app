@@ -21,7 +21,7 @@ final songs = [
       title:"Hulk",
       url: "https://www.youtube.com/watch?v=zHb1vXpffhI",
       artist: "Blaxx",
-      tenorMusic: ["hulk-tenor1.png", "hulk-tenor2.png"],
+      tenorMusic: ["hulk-tenor1.jpg", "hulk-tenor2.jpg"],
       secondsMusic: ["hulk-seconds"]
 
   ),

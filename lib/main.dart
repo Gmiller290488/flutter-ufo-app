@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'UFO demo app'),
     );
   }
 }
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Column(
                 children: <Widget>[
-                  Text(song.artist),
+                  Text(song.artist, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
 
                   MaterialButton(
                     color: Colors.green,
@@ -80,10 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Column(
                     children: _tenor.map((tenorMusic) => MusicButton(title: tenorMusic)).toList(),
-//                    children: _tenor.map((tenorMusic) => Text(tenorMusic)).toList(),toList
+//                    children: _tenor.map((tenorMusic) => Text(tenorMusic)).toList(),
                   ),
                   Column(
-                    children: _second.map((secondMusic) => Text(secondMusic)).toList(),
+                    children: _second.map((secondMusic) =>  MusicButton(title: secondMusic)).toList(),
                   ),
                 ]
             ),
@@ -104,13 +104,14 @@ class MusicButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return MaterialButton(
+      color: Colors.grey,
       child:
           Text(this.title),
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SecondRoute()),
+          MaterialPageRoute(builder: (context) => SecondRoute(imageName: this.title)),
         );
       }
     );
@@ -119,20 +120,25 @@ class MusicButton extends StatelessWidget {
 
 
 class SecondRoute extends StatelessWidget {
+
+  final String imageName;
+
+  SecondRoute({Key key, @required this.imageName }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("second route"),
+        title: Text(this.imageName),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("go back!"),
-        ),
-      ),
+        body: Image.asset('assets/images/${imageName}'),
+//      body: Center(
+//        child: RaisedButton(
+//          onPressed: () {
+//            Navigator.pop(context);
+//          },
+//          child: Text("go back!"),
+//        ),
+//      ),
     );
   }
 }
