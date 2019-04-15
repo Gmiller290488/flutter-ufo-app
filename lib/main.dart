@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'src/song.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,9 +22,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
 
   final String title;
 
@@ -131,15 +135,10 @@ class SecondRoute extends StatelessWidget {
         title: Text(this.imageName),
       ),
         body: Image.asset('assets/images/${imageName}'),
-//      body: Center(
-//        child: RaisedButton(
-//          onPressed: () {
-//            Navigator.pop(context);
-//          },
-//          child: Text("go back!"),
-//        ),
-//      ),
     );
   }
 }
+
+
+
 
