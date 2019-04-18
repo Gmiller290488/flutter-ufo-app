@@ -1,26 +1,24 @@
-class Songs {
+class Song {
   int id;
   String songName;
   String artist;
-  String tenor1;
-  String tenor2;
+  String youtubeUrl;
+  List<String> notes;
 
-  Songs(int id, String songName, String artist, String tenor1, String tenor2) {
-    this.id = id;
-    this.songName = songName;
-    this.artist = artist;
-    this.tenor1 = tenor1;
-    this.tenor2 = tenor2;
+
+  Song({ this.id, this.songName, this.artist, this.youtubeUrl, this.notes });
+
+  factory Song.fromJson(Map<String, dynamic> parsedJson) {
+    return Song(
+        id: parsedJson['id'],
+        songName: parsedJson['Name'],
+        artist: parsedJson['Artist'],
+        youtubeUrl: parsedJson['youtubeUrl'],
+        notes: parseNotes(parsedJson['musicNotes']));
   }
 
-  Songs.fromJson(Map json)
-      : id = json['id'],
-        songName = json['Name'],
-        artist = json['Artist'],
-        tenor1 = json["tenor1"],
-        tenor2 = json["tenor2"];
-
-  Map toJson() {
-    return {'id': id, 'songName': songName, 'artist': artist, "tenor1": tenor1, "tenor2": tenor2};
+  static List<String> parseNotes(notesJson) {
+    List<String> notesList = new List<String>.from(notesJson);
+    return notesList;
   }
 }

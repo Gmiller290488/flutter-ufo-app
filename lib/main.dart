@@ -35,24 +35,30 @@ class MyHomePage extends StatefulWidget {
 
 class API {
   static Future getSongs() {
-    var url = "https://api.myjson.com/bins/18cs30";
+    var url = "https://api.myjson.com/bins/1fgajg";
     return http.get(url);
   }
 }
 
+
+
 class _MyHomePageState extends State {
 
-//  List<Song> _songs = songs;
-  var songs = new List<Songs>();
+  List<Song> songs;
 
   _getSongs() {
     API.getSongs().then((response) {
-
       setState(() {
-        Iterable list = json.decode(response.body);
-        songs = list.map((model) => Songs.fromJson(model)).toList();
+        songs = parseSongs(response.body);
+
       });
+
     });
+  }
+
+  static List<Song> parseSongs(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Song>((json) => Song.fromJson(json)).toList();
   }
 
   initState() {
@@ -75,8 +81,9 @@ class _MyHomePageState extends State {
         body: ListView.builder(
           itemCount: songs.length,
           itemBuilder: (context, index) {
+            return _buildItem(songs[index]);
 //            return ExpansionTile(title: Text(songs[index].songName));
-          return MusicButton(uri: songs[index].tenor1.toString());
+//          return MusicButton(uri: songs[index].notes.toString());
           },
         ));
     }
@@ -89,45 +96,41 @@ class _MyHomePageState extends State {
 //    });
 //  }
 //
-//  Widget _buildItem(Song song) {
-//
-//    List<String> _tenor = song.tenorMusic;
-//    List<String> _second = song.secondsMusic;
-//    return new Padding(
-//      padding: const EdgeInsets.all(16.0),
-//      child: Center(
-//        child: ExpansionTile(
-//          title: Text(song.title, style: TextStyle(fontSize: 24.0),textAlign: TextAlign.start),
-//          children: [
-//            Column(
-//                children: <Widget>[
-//                  Text(song.artist, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-//
-//                  MaterialButton(
-//                    color: Colors.green,
-//                    onPressed: () async {
-//                      if (await canLaunch(song.url)) {
-//                        launch(song.url);
-//                      };
-//                    },
-//                    child: Text("Open in Youtube"),
-//                  ),
-//                  Column(
-//                    children: _tenor.map((tenorMusic) => MusicButton(title: tenorMusic)).toList(),
-////                    children: _tenor.map((tenorMusic) => Text(tenorMusic)).toList(),
-//                  ),
-//                  Column(
-//                    children: _second.map((secondMusic) =>  MusicButton(title: secondMusic)).toList(),
-//                  ),
-//                ]
-//            ),
-//          ],
-////            }
-//        ),
-//      ),
-//    );
-//  }
-//}
+  Widget _buildItem(Song song) {
+
+    List<String> _tenor = song.notes;
+    return new Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: ExpansionTile(
+          title: Text(song.songName, style: TextStyle(fontSize: 24.0),textAlign: TextAlign.start),
+          children: [
+            Column(
+                children: <Widget>[
+                  Text(song.artist, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+
+                  MaterialButton(
+                    color: Colors.green,
+                    onPressed: () async {
+                      if (await canLaunch(song.youtubeUrl)) {
+                        launch(song.youtubeUrl);
+                      };
+                    },
+                    child: Text("Open in Youtube"),
+                  ),
+                  Column(
+                    children: _tenor.map((tenorMusic) => MusicButton(uri: tenorMusic)).toList(),
+//                    children: _tenor.map((tenorMusic) => Text(tenorMusic)).toList(),
+                  ),
+                ]
+            ),
+
+           ],
+        ),
+      ),
+    );
+  }
+
 //
 class MusicButton extends StatelessWidget {
 
