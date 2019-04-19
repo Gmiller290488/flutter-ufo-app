@@ -25,9 +25,6 @@ class MyApp extends StatelessWidget {
 
 
 class MyHomePage extends StatefulWidget {
-//  MyHomePage({Key key, this.title}) : super(key: key);
-//
-//  final String title;
 
   @override
   createState() => _MyHomePageState();
@@ -35,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class API {
   static Future getSongs() {
-    var url = "https://api.myjson.com/bins/1fgajg";
+    var url = "https://api.myjson.com/bins/65nlw";
     return http.get(url);
   }
 }
@@ -58,6 +55,7 @@ class _MyHomePageState extends State {
 
   static List<Song> parseSongs(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+
     return parsed.map<Song>((json) => Song.fromJson(json)).toList();
   }
 
@@ -74,31 +72,21 @@ class _MyHomePageState extends State {
   build(context) {
     return Scaffold(
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: Text("UFO"),
         ),
         body: ListView.builder(
           itemCount: songs.length,
           itemBuilder: (context, index) {
             return _buildItem(songs[index]);
-//            return ExpansionTile(title: Text(songs[index].songName));
-//          return MusicButton(uri: songs[index].notes.toString());
           },
-        ));
+        )
+    );
     }
   }
 
-//  onButtonClicked(title) {
-//    setState(() {
-//      print("Button clicked");
-//      print(title);
-//    });
-//  }
-//
   Widget _buildItem(Song song) {
 
-    List<String> _tenor = song.notes;
+    List<MusicNote> _tenor = song.notes;
     return new Padding(
       padding: const EdgeInsets.all(16.0),
       child: Center(
@@ -119,8 +107,7 @@ class _MyHomePageState extends State {
                     child: Text("Open in Youtube"),
                   ),
                   Column(
-                    children: _tenor.map((tenorMusic) => MusicButton(uri: tenorMusic)).toList(),
-//                    children: _tenor.map((tenorMusic) => Text(tenorMusic)).toList(),
+                    children: _tenor.map((tenorMusic) => MusicButton(musicNote: tenorMusic)).toList(),
                   ),
                 ]
             ),
@@ -131,24 +118,24 @@ class _MyHomePageState extends State {
     );
   }
 
-//
+
 class MusicButton extends StatelessWidget {
 
-  final String uri;
+  final MusicNote musicNote;
   final Function(String) onPressed;
 
-  const MusicButton({ this.uri, this.onPressed });
+  const MusicButton({ this.musicNote, this.onPressed });
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       color: Colors.grey,
       child:
-          Text(this.uri),
+          Text(musicNote.name.toString()),
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SecondRoute(imageName: this.uri)),
+          MaterialPageRoute(builder: (context) => SecondRoute(imageName: musicNote.imgUrl)),
         );
       }
     );
@@ -167,7 +154,6 @@ class SecondRoute extends StatelessWidget {
       appBar: AppBar(
         title: Text(this.imageName),
       ),
-//        body: Image.asset('assets/images/${imageName}'),
       body: Image.network(imageName)
       );
   }

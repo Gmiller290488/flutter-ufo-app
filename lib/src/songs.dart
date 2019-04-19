@@ -3,7 +3,7 @@ class Song {
   String songName;
   String artist;
   String youtubeUrl;
-  List<String> notes;
+  List<MusicNote> notes;
 
 
   Song({ this.id, this.songName, this.artist, this.youtubeUrl, this.notes });
@@ -17,8 +17,37 @@ class Song {
         notes: parseNotes(parsedJson['musicNotes']));
   }
 
-  static List<String> parseNotes(notesJson) {
-    List<String> notesList = new List<String>.from(notesJson);
+//  static List<Images> parseImages(imagesJson) {
+//    var list = imagesJson['images'] as List;
+//    List<Images> imagesList =
+//    list.map((data) => Images.fromJson(data)).toList();
+//    return imagesList;
+
+
+  static List<MusicNote> parseNotes(notesJson) {
+    print(notesJson);
+    var list = notesJson as List;
+    print("fucc1");
+    print(list);
+    List<MusicNote> notesList = list.map((data) => MusicNote.fromJson(data)).toList();
+    print(notesList);
+
     return notesList;
+  }
+}
+
+class MusicNote {
+  final int id;
+  final String name;
+  final String imgUrl;
+
+  MusicNote({ this.id, this.name, this.imgUrl });
+
+  factory MusicNote.fromJson(Map<String, dynamic> json) {
+    return MusicNote(
+        id: json['id'] as int,
+        name: json['name'],
+        imgUrl: json['imgUrl']
+        );
   }
 }

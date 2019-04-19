@@ -1,26 +1,47 @@
 
+[
   {
     "id": 1,
     "Name": "Hulk",
     "Artist": "Blaxx",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
     "musicNotes": [
-      "https://i.imgur.com/YEGUna6.jpg",
-      "https://i.imgur.com/DrnMXXJ.jpg"
+      {
+        "id": 1,
+        "name": "Tenor notes page 1",
+        "imgUrl": "https://i.imgur.com/YEGUna6.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Tenor notes page 2",
+        "imgUrl": "https://i.imgur.com/DrnMXXJ.jpg"
+      }
     ]
   },
   {
     "id": 2,
     "Name": "Inside the Festival",
     "Artist": "Ultimate Rejects",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
     "musicNotes": [
-      "https://i.imgur.com/DrnMXXJ.jpg"
+      {
+        "id" : 1,
+        "name": "Tenor notes page 1",
+        "imgUrl": "https://i.imgur.com/DrnMXXJ.jpg"
+      }
     ]
   },
   {
     "id": 3,
     "Name": "Inside the Festival1",
     "Artist": "Ultimate Rejects",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
     "musicNotes": [
-      "https://i.imgur.com/DrnMXXJ.jpg"
+      {
+        "id": 1,
+        "name": "Tenor notes page 1",
+        "imgUrl": "https://i.imgur.com/DrnMXXJ.jpg"
+      }
     ]
   }
+]
