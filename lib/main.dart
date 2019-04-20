@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
   build(context) {
     return MaterialApp(
       title: 'UFO Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
+          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0)
       ),
       home: MyHomePage(),
     );
@@ -75,24 +75,12 @@ class _MyHomePageState extends State {
     return Scaffold(
       appBar: AppBar(
         title: Text("UFO"),
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       ),
       body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              // Add one stop for each color. Stops should increase from 0 to 1
-              stops: [0.1, 0.5, 0.7, 0.9],
-              colors: [
-                // Colors are easy thanks to Flutter's Colors class.
-                Colors.lightBlue[900],
-                Colors.lightBlue[700],
-                Colors.lightBlue[500],
-                Colors.lightBlue[200],
-              ],
-            ),
-          ),
+          color: Color.fromRGBO(58, 66, 86, 1.0),
           child:
-          songs == null ? Center(child: CircularProgressIndicator()) : ListView.builder(
+          songs == null ? Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white))) : ListView.builder(
             itemCount: songs.length,
             itemBuilder: (context, index) {
               return _buildItem(songs[index]);
@@ -133,52 +121,66 @@ class CustomExpansionTileState extends State<CustomExpansionTile> {
 
     List<MusicNote> _musicNotes = widget.song.notes;
 
-    return ExpansionTile(
-      title: Container(
-        child:
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "${widget.song.songName}\n${widget.song.artist}",
-            style: TextStyle(
-                fontSize: 24.0, fontWeight: isExpanded ? FontWeight.bold : FontWeight.normal, color: Colors.amber
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: Color.fromRGBO(86, 93, 108, 1.0),
+      ),
+      child:
+      ExpansionTile(
+        title:
+        Container(
+          child:
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "${widget.song.songName}\n${widget.song.artist}",
+              style: TextStyle(
+                  fontSize: 24.0, fontWeight: isExpanded ? FontWeight.bold : FontWeight.normal, color: Colors.amber
+              ),
             ),
           ),
+
+          // Change header (which is a Container widget in this case) background colour here.
+          color: Colors.transparent,
         ),
-        // Change header (which is a Container widget in this case) background colour here.
-        color: Colors.transparent,
-      ),
-      leading: Icon(
-        Icons.music_note,
-        color: Colors.amber,
-        size: 36.0,
-      ),
-      trailing: isExpanded ? Icon(
-          Icons.arrow_drop_up,
-          color: Colors.amber) :
-      Icon(
-        Icons.arrow_drop_down,
-        color: Colors.amber,
-      ),
-      children:
-      <Widget>[
-        MaterialButton(
-          minWidth: 100,
-          color: Colors.red,
-          splashColor: Colors.orange,
-          onPressed: () async {
-            if (await canLaunch(widget.song.youtubeUrl)) {
-              launch(widget.song.youtubeUrl);
-            };
-          },
-          child: Text("Youtube"),
+        leading: Icon(
+          Icons.music_note,
+          color: Colors.amber,
+          size: 36.0,
         ),
-        Column(
-          children: _musicNotes.map((notes) => MusicButton(musicNote: notes)).toList(),
+        trailing: isExpanded ? Icon(
+            Icons.arrow_drop_up,
+            color: Colors.amber) :
+        Icon(
+          Icons.arrow_drop_down,
+          color: Colors.amber,
         ),
-      ],
-      backgroundColor: Colors.transparent,
-      onExpansionChanged: (bool expanding) => setState(() => this.isExpanded = expanding),
+        children:
+        <Widget>[
+          Column(
+            children: _musicNotes.map((notes) => MusicButton(musicNote: notes)).toList(),
+          ),
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0)),
+            color: Color.fromRGBO(58, 66, 86, 0.5)
+            ),
+            child:
+                  ListTile(
+                    title: Text(
+                        "Watch on YouTube", textAlign: TextAlign.center ,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                    onTap: () async {
+                      if (await canLaunch(widget.song.youtubeUrl)) {
+                        launch(widget.song.youtubeUrl);
+                      };
+                    },
+                  ),
+
+          ),
+        ],
+        backgroundColor: Colors.transparent,
+        onExpansionChanged: (bool expanding) => setState(() => this.isExpanded = expanding),
+      ),
     );
   }
 }
@@ -197,18 +199,18 @@ class MusicButton extends ListTile {
         Padding(padding: EdgeInsets.fromLTRB(60, 0, 0, 0),
           child:
           ListTile(
-            title: Text(
-                musicNote.name.toString(), style: TextStyle(color: Colors.amber, fontSize: 18)),
-            trailing: Icon(Icons.arrow_forward_ios, color: Colors.amber),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) =>
-                    ImageRoute(imageList: musicNote.imgUrl, instrument: musicNote.name)),
-              );
-            }
+              title: Text(
+                  musicNote.name.toString(), style: TextStyle(color: Colors.amber, fontSize: 18)),
+              trailing: Icon(Icons.arrow_forward_ios, color: Colors.amber),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>
+                      ImageRoute(imageList: musicNote.imgUrl, instrument: musicNote.name)),
+                );
+              }
           ),
-    ),
+        ),
       ],
     );
   }

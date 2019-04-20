@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class ImageRoute extends StatelessWidget {
-  
+
   final String instrument;
   final List<String> imageList;
 
@@ -11,16 +12,21 @@ class ImageRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(this.instrument),
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       ),
-      body: Card(
-        color: Colors.lightBlue,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Image.network(imageList[0])
-          ],
-        ),
-      ),
-    );
+      body:
+          Container(
+            color: Color.fromRGBO(58, 66, 86, 1.0),
+            child:
+            Swiper(
+              itemBuilder: (BuildContext context,int index){
+                return new Image.network(imageList[index], fit: BoxFit.fitWidth);
+              },
+              itemCount: imageList.length,
+              pagination: new SwiperPagination(),
+              control: new SwiperControl(),
+            ),
+          ),
+        );
   }
 }
