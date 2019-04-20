@@ -3,6 +3,7 @@ import 'src/songs.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'imageRoute.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class API {
   static Future getSongs() {
-    var url = "https://api.myjson.com/bins/65nlw";
+    var url = "https://api.myjson.com/bins/iu8c4";
     return http.get(url);
   }
 }
@@ -102,6 +103,7 @@ class _MyHomePageState extends State {
   }
 }
 
+
 Widget _buildItem(Song song) {
 
   return new Padding(
@@ -112,54 +114,6 @@ Widget _buildItem(Song song) {
   );
 }
 
-
-class MusicButton extends StatelessWidget {
-
-  final MusicNote musicNote;
-  final Function(String) onPressed;
-
-  const MusicButton({ this.musicNote, this.onPressed });
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlineButton(
-        color: Colors.transparent,
-        child:
-        Text(musicNote.name.toString(), style: TextStyle(color: Colors.white70)),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SecondRoute(imageName: musicNote.imgUrl)),
-          );
-        }
-    );
-  }
-}
-
-
-class SecondRoute extends StatelessWidget {
-
-  final String imageName;
-
-  SecondRoute({Key key, @required this.imageName }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(this.imageName),
-      ),
-      body: Card(
-        color: Colors.lightBlue,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Image.network(imageName)
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class CustomExpansionTile extends StatefulWidget {
 
@@ -181,12 +135,13 @@ class CustomExpansionTileState extends State<CustomExpansionTile> {
 
     return ExpansionTile(
       title: Container(
-        child: Align(
-          alignment: Alignment.center,
+        child:
+        Align(
+          alignment: Alignment.centerLeft,
           child: Text(
-            widget.song.songName,
+            "${widget.song.songName}\n${widget.song.artist}",
             style: TextStyle(
-              fontSize: 24.0, color: isExpanded ? Colors.white : Colors.black,
+              fontSize: 24.0, fontWeight: isExpanded ? FontWeight.bold : FontWeight.normal, color: Colors.amber
             ),
           ),
         ),
@@ -195,15 +150,15 @@ class CustomExpansionTileState extends State<CustomExpansionTile> {
       ),
       leading: Icon(
         Icons.music_note,
-        color: isExpanded ? Colors.white : Colors.black,
+        color: Colors.amber,
         size: 36.0,
       ),
       trailing: isExpanded ? Icon(
-        Icons.arrow_drop_up,
-        color: Colors.white) :
-          Icon(
-            Icons.arrow_drop_down,
-            color: Colors.black,
+          Icons.arrow_drop_up,
+          color: Colors.amber) :
+      Icon(
+        Icons.arrow_drop_down,
+        color: Colors.amber,
       ),
       children:
       <Widget>[
@@ -227,4 +182,35 @@ class CustomExpansionTileState extends State<CustomExpansionTile> {
     );
   }
 }
+
+class MusicButton extends StatelessWidget {
+
+  final MusicNote musicNote;
+  final Function(String) onPressed;
+
+  const MusicButton({ this.musicNote, this.onPressed });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:
+        SizedBox(
+          width: double.infinity,
+          child:
+            OutlineButton(
+              color: Colors.transparent,
+              child:
+              Text(musicNote.name.toString(), style: TextStyle(color: Colors.amber)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ImageRoute(imageName: musicNote.imgUrl)),
+                );
+              }
+            ),
+        ),
+    );
+  }
+}
+
 
