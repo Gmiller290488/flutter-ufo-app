@@ -1,4 +1,3 @@
-
 [
   {
     "id": 1,
@@ -7,13 +6,14 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
     "musicNotes": [
       {
-        "id": 1,
-        "name": "Tenor notes page 1",
-        "imgUrl": "https://i.imgur.com/YEGUna6.jpg"
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/YEGUna6.jpg",
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
       },
       {
-        "id": 2,
-        "name": "Tenor notes page 2",
+        "name": "Seconds",
         "imgUrl": "https://i.imgur.com/DrnMXXJ.jpg"
       }
     ]
@@ -25,22 +25,150 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
     "musicNotes": [
       {
-        "id" : 1,
-        "name": "Tenor notes page 1",
-        "imgUrl": "https://i.imgur.com/DrnMXXJ.jpg"
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
       }
     ]
   },
   {
     "id": 3,
-    "Name": "Inside the Festival1",
+    "Name": "Hello",
+    "Artist": "Kes",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "Name": "Sweet Fuh Days",
+    "Artist": "Patrice Roberts",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "Name": "Iron Love",
+    "Artist": "Nailah Blackman",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "Name": "Come For It",
+    "Artist": "Machel Montano",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "Name": "Hookin' Meh",
+    "Artist": "Farmer Nappy",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "Name": "Carnival Tabanca",
+    "Artist": "Bunji Carlin",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "Name": "Full Extreme",
     "Artist": "Ultimate Rejects",
     "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
     "musicNotes": [
       {
-        "id": 1,
-        "name": "Tenor notes page 1",
-        "imgUrl": "https://i.imgur.com/DrnMXXJ.jpg"
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "Name": "Buss Head",
+    "Artist": "Machel Montano",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "Name": "Good Morning",
+    "Artist": "Peter Ram",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "Name": "Incredible",
+    "Artist": "Kes",
+    "youtubeUrl": "https://www.youtube.com/watch?v=1iV1wQkDLlo",
+    "musicNotes": [
+      {
+        "name": "Tenor",
+        "imgUrl": [
+          "https://i.imgur.com/DrnMXXJ.jpg"
+        ]
       }
     ]
   }

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 
 class ImageRoute extends StatelessWidget {
+  
+  final String instrument;
+  final List<String> imageList;
 
-  final String imageName;
-
-  ImageRoute({Key key, @required this.imageName }) : super(key: key);
+  ImageRoute({Key key, @required this.imageList, this.instrument }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.imageName),
+        title: Text(this.instrument),
       ),
       body: Card(
         color: Colors.lightBlue,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Image.network(imageName)
+            Image.network(imageList[0])
           ],
         ),
       ),

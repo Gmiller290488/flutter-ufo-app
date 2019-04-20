@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class API {
   static Future getSongs() {
-    var url = "https://api.myjson.com/bins/iu8c4";
+    var url = "https://api.myjson.com/bins/15rmuc";
     return http.get(url);
   }
 }
@@ -141,7 +141,7 @@ class CustomExpansionTileState extends State<CustomExpansionTile> {
           child: Text(
             "${widget.song.songName}\n${widget.song.artist}",
             style: TextStyle(
-              fontSize: 24.0, fontWeight: isExpanded ? FontWeight.bold : FontWeight.normal, color: Colors.amber
+                fontSize: 24.0, fontWeight: isExpanded ? FontWeight.bold : FontWeight.normal, color: Colors.amber
             ),
           ),
         ),
@@ -183,7 +183,7 @@ class CustomExpansionTileState extends State<CustomExpansionTile> {
   }
 }
 
-class MusicButton extends StatelessWidget {
+class MusicButton extends ListTile {
 
   final MusicNote musicNote;
   final Function(String) onPressed;
@@ -192,25 +192,28 @@ class MusicButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:
-        SizedBox(
-          width: double.infinity,
+    return Column(
+      children: <Widget>[
+        Padding(padding: EdgeInsets.fromLTRB(60, 0, 0, 0),
           child:
-            OutlineButton(
-              color: Colors.transparent,
-              child:
-              Text(musicNote.name.toString(), style: TextStyle(color: Colors.amber)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ImageRoute(imageName: musicNote.imgUrl)),
-                );
-              }
-            ),
-        ),
+          ListTile(
+            title: Text(
+                musicNote.name.toString(), style: TextStyle(color: Colors.amber, fontSize: 18)),
+            trailing: Icon(Icons.arrow_forward_ios, color: Colors.amber),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>
+                    ImageRoute(imageList: musicNote.imgUrl, instrument: musicNote.name)),
+              );
+            }
+          ),
+    ),
+      ],
     );
   }
 }
+
+
 
 
